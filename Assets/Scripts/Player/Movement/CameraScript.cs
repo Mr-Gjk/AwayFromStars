@@ -1,17 +1,11 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class CameraScript : MonoBehaviour
+public partial class CameraScript : Player
 {
-    [SerializeField] private GameObject _player;
-    [SerializeField] private GameObject _cam;
-    [SerializeField] private Rigidbody2D _rigidbody2D;
-
-
-    // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 test = _player.transform.position - _cam.transform.position;
-        _rigidbody2D.velocity = test*3;
+
+        Vector2 forceVector = _Player.transform.position - _Camera.transform.position;
+        _CameraRigidbody.velocity = forceVector * 3;
     }
 }

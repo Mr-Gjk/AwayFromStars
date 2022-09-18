@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] public int Damage = 20;
+    public int Damage = 20;
 }

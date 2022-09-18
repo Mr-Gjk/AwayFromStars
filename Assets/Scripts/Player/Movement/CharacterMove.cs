@@ -1,28 +1,19 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
-
-    public class CharacterMove : MonoBehaviour
+    public class CharacterMove : Player
     {
-        [SerializeField] private GameObject _player;
-        [SerializeField] private Rigidbody2D _playerRigidbody2D;
-        [SerializeField] private FixedJoystick _joystick;
-        [SerializeField] private ParticleSystem _particle;
-        [SerializeField] private float _enginePower;
-        [SerializeField] private float _engineFire;
 
-        // Update is called once per frame
         void FixedUpdate()
         {
-            _playerRigidbody2D.AddForce(Force());
-            _particle.startLifetime = _engineFire * _playerRigidbody2D.velocity.magnitude;
-            _player.transform.rotation = Quaternion.Euler(0, 0, DirectionZ());
+            _PlayerRigidbody.AddForce(Force());
+            _Particles.startLifetime = _engineFire * _PlayerRigidbody.velocity.magnitude;
+            _Player.transform.rotation = Quaternion.Euler(0, 0, DirectionZ());
         }
 
         float DirectionZ()
         {
-            float x = _playerRigidbody2D.velocity.x;
-            float y = _playerRigidbody2D.velocity.y;
+            float x = _PlayerRigidbody.velocity.x;
+            float y = _PlayerRigidbody.velocity.y;
             float angle;
             if (x > 0)
             {
@@ -34,11 +25,11 @@ using UnityEngine;
             }
             return angle;
         }
-    Vector2 Force()
-    {
-        float horizontal = _joystick.Horizontal * _enginePower / _playerRigidbody2D.mass;
-        float vertical = _joystick.Vertical * _enginePower / _playerRigidbody2D.mass;
-        return new Vector2(horizontal,vertical) -_playerRigidbody2D.velocity * _playerRigidbody2D.mass;
-    }
+        Vector2 Force()
+        {
+            float horizontal = _Joystick.Horizontal * _enginePower / _PlayerRigidbody.mass;
+            float vertical = _Joystick.Vertical * _enginePower / _PlayerRigidbody.mass;
+            return new Vector2(horizontal,vertical) -_PlayerRigidbody.velocity * _PlayerRigidbody.mass;
+        }
     }
 

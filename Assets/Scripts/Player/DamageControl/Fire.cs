@@ -1,28 +1,21 @@
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class Fire : Player
 {
-    [SerializeField] private GameObject _player;
-    [SerializeField] private Rigidbody2D _playerRigidbody2D;
 
     [SerializeField] private GameObject _projectile;
-    [SerializeField] private float _projectileSpeed;
+    private float _projectileSpeed = 25;
 
     [SerializeField] private AudioClip din;
-    [SerializeField] private AudioSource audio;
-    void Start()
-    {
-        audio = GetComponent<AudioSource>();
-    }
     public void OnClick()
     {
         GameObject projectile =  Instantiate(_projectile);
         Rigidbody2D rigidbody = projectile.AddComponent(typeof(Rigidbody2D)) as Rigidbody2D;
 
-        projectile.transform.rotation = _player.transform.rotation;
-        projectile.transform.position = _player.transform.position;
+        projectile.transform.rotation = _Player.transform.rotation;
+        projectile.transform.position = _Player.transform.position;
 
-        audio.PlayOneShot(din);
+        _Audio.PlayOneShot(din);
         rigidbody.velocity = GetVelocity();
         
     }
@@ -31,14 +24,14 @@ public class Fire : MonoBehaviour
     Vector2 GetVelocity()
     {
         Vector2 finalVelocity;
-        Vector2 playerVelocity = _playerRigidbody2D.velocity;
+        Vector2 playerVelocity = _PlayerRigidbody.velocity;
         float velocityX = playerVelocity.x;
         float velocityY = playerVelocity.y;
 
         //Check is player have speed, if no, we know right direction (literally to the right)
         if (playerVelocity.magnitude != 0)
         {
-            // We create a new variable "speedRatio" to set the vector of speed in x & y coordinates
+            // We create a new variable "speedRatio" to set the vector of speed in x & y ratio
             float speedRatio = Mathf.Abs(playerVelocity.x) + Mathf.Abs(playerVelocity.y);
             velocityX = playerVelocity.x * _projectileSpeed / speedRatio;
             velocityY = playerVelocity.y * _projectileSpeed / speedRatio;

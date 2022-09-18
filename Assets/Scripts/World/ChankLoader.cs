@@ -1,51 +1,53 @@
 using UnityEngine;
-using System;
 
-public class ChankLoader : MonoBehaviour
+public class ChankLoader : Player
 {
-    [SerializeField] private GameObject _player;
-    [SerializeField] private Rigidbody2D _playerRigidbody2D;
-    [SerializeField] private ChunkGenerator Chunk;
-    [SerializeField] private float _sizeChunk;
-    float startX , startY ;
+    private ChunkGenerator Chunk;
+    private float _sizeChunk = 50;
+
+    float currX , currY ;
     float deltaX, deltaY;
+
     bool isDownloadX = false,
         isDownloadY = false;
-    void Awake()
+
+    void ChunkLoader()
     {
-        startX = _player.transform.position.x;
-        startY = _player.transform.position.y;
+        Chunk = GameObject.Find("Chunk").GetComponent<ChunkGenerator>();
+        currX = _Player.transform.position.x;
+        currY = _Player.transform.position.y;
     }
+
     // Update is called once per frame
     void Update()
     {
         if (!isDownloadX&&!isDownloadY)
         {
-            deltaX = _player.transform.position.x;
-            deltaY = _player.transform.position.y;
-            if (startX * _sizeChunk - deltaX < 0)
+            deltaX = _Player.transform.position.x;
+            deltaY = _Player.transform.position.y;
+            if (currX * _sizeChunk - deltaX < 0)
             {
                 isDownloadX = true;
                 DownloadChanks();
-                startX++;
+                currX++;
             }
-            else if (deltaX < (startX - 1) * _sizeChunk)
+            else if (deltaX < (currX - 1) * _sizeChunk)
             {
                 isDownloadX = true;
                 DownloadChanks();
-                startX--;
+                currX--;
             }
-            if (startY * _sizeChunk - deltaY < 0)
+            if (currY * _sizeChunk - deltaY < 0)
             {
                 isDownloadY = true;
                 DownloadChanks();
-                startY++;
+                currY++;
             }
-            else if (deltaY < (startY - 1) * _sizeChunk)
+            else if (deltaY < (currY - 1) * _sizeChunk)
             {
                 isDownloadY = true;
                 DownloadChanks();
-                startY--;
+                currY--;
             }
         }
         else {
@@ -54,10 +56,11 @@ public class ChankLoader : MonoBehaviour
         }
         //_player.transform.position;
     }
+
     void DownloadChanks()
     {
         ChunkGenerator newChunk = Instantiate(Chunk);
-        newChunk.transform.position = new Vector3(startX * _sizeChunk, startY * _sizeChunk, 0);
+        newChunk.transform.position = new Vector3(currX * _sizeChunk, currY * _sizeChunk, 0);
         //spawnedStars.Add(newStar);
     }
 }

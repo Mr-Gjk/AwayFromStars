@@ -1,19 +1,19 @@
 using UnityEngine;
 
-public class ChunkGenerator : MonoBehaviour
+public class ChunkGenerator : Player
 {
-    [SerializeField] private GameObject _player;
 
     [SerializeField] private GameObject[] starPrefab;
     public static int valueOfStars = 0;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        float posX = _player.transform.position.x;
-        float posY = _player.transform.position.y;
+        float posX = _Player.transform.position.x;
+        float posY = _Player.transform.position.y;
         SpawnStars(Mathf.PerlinNoise(posX, posY), Mathf.PerlinNoise(posY, posX));
     }
+
     private void SpawnStars(float x, float y)
     {
         for(int i = 0; i < 10; i++)

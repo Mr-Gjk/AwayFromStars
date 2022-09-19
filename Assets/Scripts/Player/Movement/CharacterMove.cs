@@ -1,9 +1,9 @@
 using UnityEngine;
 
-    public class CharacterMove : Player
-    {
+public partial class Player : MonoBehaviour
+{
 
-        void FixedUpdate()
+    void CharacterMove()
         {
             _PlayerRigidbody.AddForce(Force());
             _Particles.startLifetime = _engineFire * _PlayerRigidbody.velocity.magnitude;

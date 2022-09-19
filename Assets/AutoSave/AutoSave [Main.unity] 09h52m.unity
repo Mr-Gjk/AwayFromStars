@@ -402,7 +402,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -496,18 +495,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &519420034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 706e5b8b0ac7d1b4eaa1e3af72c9b9e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &652303470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -692,8 +679,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2060375180}
-        m_TargetAssemblyTypeName: Fire, Assembly-CSharp
+      - m_Target: {fileID: 2060375183}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -963,7 +950,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2060375172
 GameObject:
@@ -979,10 +966,7 @@ GameObject:
   - component: {fileID: 2060375177}
   - component: {fileID: 2060375178}
   - component: {fileID: 2060375184}
-  - component: {fileID: 2060375176}
   - component: {fileID: 2060375175}
-  - component: {fileID: 2060375180}
-  - component: {fileID: 2060375181}
   - component: {fileID: 2060375179}
   - component: {fileID: 2060375182}
   m_Layer: 0
@@ -1123,18 +1107,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &2060375176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060375172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 706e5b8b0ac7d1b4eaa1e3af72c9b9e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &2060375177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5888,32 +5860,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &2060375180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060375172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec92f8a73d0134347a045b718fad0c37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _projectile: {fileID: 976703300899865766, guid: 7577a683e03165d408f90b6105f5c2ee, type: 3}
-  din: {fileID: 8300000, guid: 19664d2ad800cab40aa8f23901d4cef1, type: 3}
---- !u!114 &2060375181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060375172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a76efcd73346a24983f5cca0705d0ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &2060375182
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6022,6 +5968,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71143a3197a641439a6c71d6d480402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectile: {fileID: 976703300899865766, guid: 7577a683e03165d408f90b6105f5c2ee, type: 3}
+  din: {fileID: 8300000, guid: 19664d2ad800cab40aa8f23901d4cef1, type: 3}
 --- !u!114 &2060375184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6034,6 +5982,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee96eda9c61d31647bc8371e9f7858ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectile: {fileID: 0}
+  _projectileSpeed: 25
+  din: {fileID: 0}
+  Chunk: {fileID: 0}
+  _sizeChunk: 50
+  currX: 0
+  currY: 0
+  deltaX: 0
+  deltaY: 0
+  isDownloadX: 0
+  isDownloadY: 0
 --- !u!1 &2096497944
 GameObject:
   m_ObjectHideFlags: 0
@@ -6063,6 +6022,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bf8bb1a6c38574286e7ce22ae544de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectile: {fileID: 0}
+  din: {fileID: 0}
   starPrefab: []
 --- !u!4 &2096497946
 Transform:
@@ -6077,5 +6038,5 @@ Transform:
   m_Children:
   - {fileID: 42043500}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Fire : Player
+public partial class Player : MonoBehaviour
 {
 
     [SerializeField] private GameObject _projectile;

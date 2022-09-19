@@ -61,5 +61,12 @@ public partial class Player : MonoBehaviour
         _Particles = _Player.GetComponent<ParticleSystem>();
         _Joystick = Canvas.FindObjectOfType<FixedJoystick>();
         _Audio = GetComponent<AudioSource>();
+        ChunkLoader();
+    }
+
+    void FixedUpdate()
+    {
+        CharacterMove();
+        Camera();
     }
 }

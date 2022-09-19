@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public partial class CameraScript : Player
+public partial class Player : MonoBehaviour
 {
-    void FixedUpdate()
+    void Camera()
     {
 
         Vector2 forceVector = _Player.transform.position - _Camera.transform.position;

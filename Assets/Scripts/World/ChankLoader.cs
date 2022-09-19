@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ChankLoader : Player
+public partial class Player : MonoBehaviour
 {
     private ChunkGenerator Chunk;
     private float _sizeChunk = 50;

@@ -1,19 +1,19 @@
 using UnityEngine;
 
-public class DamageTaker : Enemy
+public partial class Enemy : MonoBehaviour
 {
     void OnTriggerEnter2D (Collider2D collision)
     {
         if (collision.CompareTag("PlayerProjectile"))
         {
             Projectile newP = collision.gameObject.GetComponent<Projectile>();
-            TakeDamage(newP.Damage);
+            TakeDamage(Random.Range(newP.Damage*0.8f , newP.Damage * 1.2f));
             Destroy(collision.gameObject);
         }
     }
-    void TakeDamage (int hitPoint)
+    void TakeDamage (float hitPoint)
     {
-        health -= hitPoint;
+        health -= (int)hitPoint;
         if (health <= 0)
         {
             Destroy(gameObject);

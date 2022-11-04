@@ -15,6 +15,11 @@ public partial class Player : MonoBehaviour
     public static float _enginePower = 100000;
     public static float _engineFire = 0.04f;
 
+    int health = 50;
+    int shield = 50;
+    float _maxHealth;
+    float _maxShield;
+
     public GameObject _Player
     {
         get { return _player; }
@@ -52,9 +57,20 @@ public partial class Player : MonoBehaviour
         set { _audio = value; }
     }
 
+    public float _MaxHealth
+    {
+        get { return _maxHealth; }
+        set { _maxHealth = value; }
+    }
+    public float _MaxShield
+    {
+        get { return _maxShield; }
+        set { _maxShield = value; }
+    }
+
     void Awake()
     {
-        _Player = GameObject.Find("PlayerShip");
+        _Player = gameObject;
         _PlayerRigidbody = _Player.GetComponent<Rigidbody2D>();
         _Camera = GameObject.Find("MainCamera");
         _CameraRigidbody = _Camera.GetComponent<Rigidbody2D>();
@@ -62,6 +78,10 @@ public partial class Player : MonoBehaviour
         _Joystick = Canvas.FindObjectOfType<FixedJoystick>();
         _Audio = GetComponent<AudioSource>();
         ChunkLoader();
+        _MaxHealth = health;
+        _MaxShield = shield;
+        isInventoryOpen = Inventory.active;
+        OpenInventory();
     }
 
     void FixedUpdate()

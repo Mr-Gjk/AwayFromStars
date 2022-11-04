@@ -5,21 +5,26 @@ public partial class Player : MonoBehaviour
 
     [SerializeField] private GameObject _projectile;
     private float _projectileSpeed = 25;
+    float _currentCooldownFire = 0;
+    float _cooldownFire = 0.5f;
 
     [SerializeField] private AudioClip din;
-    public void OnClick()
+    public void Fire()
     {
-        GameObject projectile =  Instantiate(_projectile);
-        Rigidbody2D rigidbody = projectile.AddComponent(typeof(Rigidbody2D)) as Rigidbody2D;
+            if (_currentCooldownFire <= Time.time)
+            {
+                _currentCooldownFire = Time.time + _cooldownFire;
+                GameObject projectile = Instantiate(_projectile);
+                Rigidbody2D rigidbody = projectile.AddComponent(typeof(Rigidbody2D)) as Rigidbody2D;
 
-        projectile.transform.rotation = _Player.transform.rotation;
-        projectile.transform.position = _Player.transform.position;
+                projectile.transform.rotation = _Player.transform.rotation;
+                projectile.transform.position = _Player.transform.position;
 
-        _Audio.PlayOneShot(din);
-        rigidbody.velocity = GetVelocity();
+                _Audio.PlayOneShot(din);
+                rigidbody.velocity = GetVelocity();
+            }
         
     }
-
     //Function "GetVelocity" Create a new Vector2 and take from player his velocity to create right direction of travel
     Vector2 GetVelocity()
     {
